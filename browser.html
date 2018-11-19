@@ -1,10 +1,29 @@
 <html>
     <head>
+        <meta http-equiv="Content-Security-Policy" content="default-src * data: blob: ws: file: wss: cdvfile: gap: ms-appdata: https://ssl.gstatic.com 'unsafe-eval';
+                                    img-src * 'self' 'unsafe-inline' 'unsafe-eval' android-webview-video-poster: data: file: blob: filesystem: cdvfile:;
+                                    media-src * 'self' 'unsafe-inline' 'unsafe-eval' data: file: blob: filesystem: cdvfile:;
+                                    style-src * 'unsafe-inline' data: blob: ws: wss: cdvfile: gap://ready file://*;
+                                    child-src * 'self' 'unsafe-inline' 'unsafe-eval' data: blob: ws: wss: cdvfile: gap://ready file://*;
+                                    worker-src * 'self' 'unsafe-inline' 'unsafe-eval'  data: blob: filesystem:;
+                                    script-src * 'unsafe-inline' 'unsafe-eval' data: file: blob: filesystem: cdvfile:;
+                                    connect-src * ws: wss:;">
         <meta charset="UTF-8">
         <title>Browser Examples - All Might App</title>
         <script type="text/javascript" src="examples/simple-event-loop.js"></script>
+        <script type="text/javascript" src="examples/event-loop.js"></script>
+        <script type="javascript/worker"></script>
+        <script type="text/javascript">
+            
+            var myWorker = new Worker();
+            myWorker.onmessage = (data) => {
+                console.log('xablau', data);
+            };
+            myWorker.postMessage();
+        </script>
     </head>
     <body>
-        <button type="button" onclick="simpleEventLoop()">Event Loop Init</button>
+        <button type="button" onclick="simpleEventLoop()">Simple Event Loop Example</button>
+        <button type="button" onclick="eventLoop()">Complex Event Loop Example</button>
     </body>
 </html>
